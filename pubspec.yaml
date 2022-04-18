@@ -37,7 +37,7 @@ dependencies:
   fluttertoast:
   shared_preferences:
   carousel_slider:
-  
+  curved_navigation_bar:
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -117,85 +117,88 @@ Widget productBuilder(HomeModel? model, CategoriesModel? categoriesModel,context
 Widget buildGridItem(ProductModel ? model ,context ) {
   return Container(
     color: Colors.white,
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Stack(
-          alignment: AlignmentDirectional.bottomStart,
-          children: [
-            Image(
-              image: NetworkImage(
-                model!.image,
-              ),
-              width: double.infinity,
-              height: 150.0,
-            ),
-            if (model.discount != 0)
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                color: mainColor,
-                child: const Text(
-                  "DISCOUNT",
-                  style: TextStyle(color: Colors.white, fontSize: 8.0),
-                ),
-              ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            alignment: AlignmentDirectional.bottomStart,
             children: [
-              Text(
-                "${model.name}",
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 14.0,
+              Image(
+                image: NetworkImage(
+                  model!.image,
                 ),
+                width: double.infinity,
+                height: 150.0,
               ),
-              const SizedBox(
-                height: 12.0,
-              ),
-              Row(
-                children: [
-                  Text(
-                    '${model.price}',
-                    style: const TextStyle(color: mainColor, fontSize: 12.0),
+              if (model.discount != 0)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                  color: mainColor,
+                  child: const Text(
+                    "DISCOUNT",
+                    style: TextStyle(color: Colors.white, fontSize: 8.0),
                   ),
-                  const SizedBox(
-                    width: 10.0,
-                  ),
-                  if (model.discount != 0)
-                    Text(
-                      '${model.oldPrice}',
-                      style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12.0,
-                          decoration: TextDecoration.lineThrough),
-                    ),
-                  const Spacer(),
-                  
-                  CircleAvatar(
-                    radius: 20.0,
-                    backgroundColor: ShopCubit.get(context).favoritesProduct[model.id]  ? mainColor : Colors.grey,
-                    child: IconButton(
-                      onPressed: () {
-                        
-                        ShopCubit.get(context).changeFavorites(model.id);
-                        
-                      },
-                      icon: const Icon(
-                        Icons.favorite_border_outlined,color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
             ],
           ),
-        )
-      ],
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "${model.name}",
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 14.0,
+                  ),
+                ),
+                const SizedBox(
+                  height: 12.0,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      '${model.price}',
+                      style: const TextStyle(color: mainColor, fontSize: 12.0),
+                    ),
+                    const SizedBox(
+                      width: 10.0,
+                    ),
+                    if (model.discount != 0)
+                      Text(
+                        '${model.oldPrice}',
+                        style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 12.0,
+                            decoration: TextDecoration.lineThrough),
+                      ),
+                    const Spacer(),
+                    
+                    CircleAvatar(
+                      radius: 20.0,
+                      backgroundColor: ShopCubit.get(context).favoritesProduct[model.id]  ? mainColor : Colors.grey,
+                      child: IconButton(
+                        onPressed: () {
+                          
+                          ShopCubit.get(context).changeFavorites(model.id);
+                          
+                        },
+                        icon: const Icon(
+                          Icons.favorite_border_outlined,color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
     ),
   );
 }
